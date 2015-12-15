@@ -110,27 +110,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatterForFieldAnnotation(new MaskFormatAnnotationFormatterFactory());
 	}
-	
-	@Bean
-	@Deprecated
-	public FormattingConversionServiceFactoryBean myConversionService() {
-		Set<AnnotationFormatterFactory<?>> customFormatters = new HashSet<AnnotationFormatterFactory<?>>();
-		customFormatters.add(new MaskFormatAnnotationFormatterFactory());
-		
-		FormattingConversionServiceFactoryBean formattingConversionServiceFactoryBean = new FormattingConversionServiceFactoryBean();
-		formattingConversionServiceFactoryBean.setFormatters(customFormatters);
-		return formattingConversionServiceFactoryBean;
-	}
-
-	@Bean
-	@Deprecated
-	public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
-		SimpleMappingExceptionResolver b = new SimpleMappingExceptionResolver();
-
-		Properties mappings = new Properties();
-		mappings.put("org.springframework.dao.DataAccessException", "error/general");
-		b.setExceptionMappings(mappings);
-		return b;
-	}
 
 }
